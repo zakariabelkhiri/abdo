@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abderrazak Hajji - Photographer & Visual Artist</title>
+    <style>
+        /* Add Poppins font */
+        @font-face {
+            font-family: 'Poppins';
+            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F6FCDF;
+            color: #11150D;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        header {
+            background-color: #31511E;
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        /* Profile Picture */
+        .profile-picture-header {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        /* Logo Container */
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            right: 20px; /* Logo placed at the top-right */
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        nav {
+            background-color: #526A40;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #F1E6C1; /* Soft cream */
+            font-weight: 600;
+            transition: color 0.3s, background-color 0.3s, transform 0.3s;
+            padding: 5px 10px; /* Added padding to make the hover more noticeable */
+            border-radius: 5px; /* Add a subtle border radius to buttons */
+        }
+
+        nav a:hover {
+            color: #F1E6C1; /* Soft cream */
+            background-color: #2C3E2F; /* Deep Forest Green background */
+            transform: scale(1.1); /* Slightly scale up the link on hover */
+        }
+
+        .section {
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .gallery-grid, .editing-grid, .coulisse-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Limits to two columns */
+            gap: 20px;
+            padding-top: 20px;
+            justify-items: center;
+        }
+
+        /* Apply hover effect for images */
+        .gallery-item, .editing-item, .coulisse-item {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover, .editing-item:hover, .coulisse-item:hover {
+            transform: scale(1.05); /* Slight zoom effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deepen the shadow for emphasis */
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .contact-title {
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info p {
+            margin: 0;
+        }
+
+        .contact-info a {
+            text-decoration: none;
+            color: #31511E;
+            margin: 0 5px;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #F1E6C1; /* Soft cream */
+            background-color: #7B8A5A; /* Rich Olive background */
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #31511E;
+            color: white;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 80%;
+            margin: auto;
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- Logo Placement -->
+    <div class="logo-container">
+        <!-- Replace 'logo.png' with your actual logo file -->
+        <img src="logo.png" alt="Logo">
+    </div>
+
+    <div class="header-content">
+        <!-- Profile Picture -->
+        <img src="p.jpg" alt="Profile Picture" class="profile-picture-header">
+        
+        <!-- Header Text -->
+        <div class="header-text">
+            <h1>Abderrazak Hajji</h1>
+            <p>Photographer & Visual Artist</p>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <a href="#about">À propos</a>
+    <a href="#photography">Photographie</a>
+    <a href="#editing">Édition</a>
+    <a href="#coulisse">Coulisse</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about" class="section">
+    <h2>À propos de moi</h2>
+    <p>Je suis Abderrazak Hajji, photographe et éditeur de 19 ans. Bienvenue sur ma page, n'hésitez pas à me contacter !</p>
+</section>
+
+<section id="photography" class="section">
+    <h2>Photographie</h2>
+    <div class="gallery-grid">
+        <img src="h1.jpeg" alt="Photographie 1" class="gallery-item" onclick="openModal(this)">
+        <img src="h2.jpeg" alt="Photographie 2" class="gallery-item" onclick="openModal(this)">
+        <img src="h3.jpeg" alt="Photographie 3" class="gallery-item" onclick="openModal(this)">
+        <img src="h4.jpeg" alt="Photographie 4" class="gallery-item" onclick="openModal(this)">
+    </div>
+</section>
+
+<section id="editing" class="section">
+    <h2>Édition</h2>
+    <div class="editing-grid">
+        <img src="i1.jpg" alt="Édition 1" class="editing-item" onclick="openModal(this)">
+        <img src="i2.jpg" alt="Édition 2" class="editing-item" onclick="openModal(this)">
+    </div>
+</section>
+
+<section id="coulisse" class="section">
+    <h2>Coulisse</h2>
+    <div class="coulisse-grid">
+        <img src="c1.jpeg" alt="Coulisse 1" class="coulisse-item" onclick="openModal(this)">
+        <img src="c2.jpeg" alt="Coulisse 2" class="coulisse-item" onclick="openModal(this)">
+        <img src="c3.jpeg" alt="Coulisse 3" class="coulisse-item" onclick="openModal(this)">
+        <img src="c4.jpeg" alt="Coulisse 4" class="coulisse-item" onclick="openModal(this)">
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <div class="contact-title">Contact</div>
+    <div class="contact-info">
+        <p>Vous pouvez me joindre à :</p>
+        <p>
+            Email: <a href="mailto:abderrazak@example.com">abderrazak@example.com</a><br>
+            Téléphone: <a href="tel:+123456789">+123456789</a><br>
+        </p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Abderrazak Hajji. All rights reserved.</p>
+</footer>
+
+<!-- Modal for image viewing -->
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+</div>
+
+<script>
+    // Open Modal
+    function openModal(image) {
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        modal.style.display = "flex"; // Show modal
+        modalImg.src = image.src;
+    }
+
+    // Close Modal
+    function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
